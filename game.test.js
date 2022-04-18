@@ -12,72 +12,72 @@ test('returns correct initial state in FEN notation', () => {
     expect(fen.fen).toBe('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
 })
 
-test('algToCart() converts e8 correctly', () => {
+test('algebraicToXY() converts e8 correctly', () => {
     // Given
     let game = new Game();
 
     // When
-    let cartesian = game.algToCart('e8');
+    let cartesian = game.algebraicToXY('e8');
 
     // Then
     expect(cartesian.x).toBe(4);
     expect(cartesian.y).toBe(0);
 })
 
-test('algToCart() converts a1 correctly', () => {
+test('algebraicToXY() converts a1 correctly', () => {
     // Given
     let game = new Game();
 
     // When
-    let cartesian = game.algToCart('a1');
+    let cartesian = game.algebraicToXY('a1');
 
     // Then
     expect(cartesian.x).toBe(0);
     expect(cartesian.y).toBe(7);
 })
 
-test('algToCart() returns appropriate error for "aaa"', () => {
+test('algebraicToXY() returns appropriate error for "aaa"', () => {
     // Given
     let game = new Game();
 
     // When
-    let cartesian = game.algToCart('aaa');
+    let cartesian = game.algebraicToXY('aaa');
 
     // Then
     expect(cartesian).toBe(null);
 })
 
 
-test('algToCart() returns appropriate error for "G3" (uppercase not allowed)', () => {
+test('algebraicToXY() returns appropriate error for "G3" (uppercase not allowed)', () => {
     // Given
     let game = new Game();
 
     // When
-    let cartesian = game.algToCart('G3');
+    let cartesian = game.algebraicToXY('G3');
 
     // Then
     expect(cartesian).toBe(null);
 })
 
 
-test('algToCart() returns appropriate error for "b9" (rank too high)', () => {
+test('algebraicToXY() returns appropriate error for "b9" (rank too high)', () => {
     // Given
     let game = new Game();
 
     // When
-    let cartesian = game.algToCart('b9');
+    let cartesian = game.algebraicToXY('b9');
 
     // Then
     expect(cartesian).toBe(null);
 })
 
 
-test('algToCart() returns appropriate error for "bb" (rank must be digit)', () => {
+test('algebraicToXY() returns appropriate error for "bb" (rank must be digit)', () => {
     // Given
     let game = new Game();
 
     // When
-    let cartesian = game.algToCart('bb');
+    let cartesian = game.algebraicToXY('bb');
 
     // Then
     expect(cartesian).toBe(null);

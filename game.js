@@ -91,7 +91,7 @@ class Game {
         }
     }
 
-    algToCart(algebraic) {
+    algebraicToXY(algebraic) {
         if (algebraic.length != 2) {
             return null;
         }

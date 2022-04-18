@@ -4,9 +4,6 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
-// app.use(function(req, res, next) {
-//     console.log(req);
-// });
 app.use(express.json())
 
 
@@ -31,9 +28,9 @@ app.post('/moves', (req, res) => {
 
     console.log(req.body);
 
-    // Get start and end in cartesian notation
-    let start = game.algToCart(req.body.start);
-    let end = game.algToCart(req.body.end);
+    // Get start and end in x,y coordinates
+    let start = game.algebraicToXY(req.body.start);
+    let end = game.algebraicToXY(req.body.end);
     if (start === null || end === null) {
         res.status(400).json({message: 'The start and end positions either missing or invalid.'});
     }
