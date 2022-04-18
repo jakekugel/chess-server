@@ -141,6 +141,10 @@ class Game {
             this.board[position.y][position.x] = "";
         }
     }
+
+    getPieceCode(position) {
+        return this.board[position.y][position.x];
+    }
 }
 
 module.exports = Game

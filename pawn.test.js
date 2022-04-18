@@ -8,7 +8,7 @@ test('constructor works', () => {
     let game = new Game();
 
     // When
-    let pawn = new Pawn(start, end, game);
+    let pawn = new Pawn(start, game, "white");
 
     // Then
     expect(pawn).toBeDefined();
@@ -19,10 +19,10 @@ test('pawn can move one space forward', () => {
     let start = {'x': 1, 'y': 6};
     let end = {'x': 1, 'y': 5};
     let game = new Game();
-    let pawn = new Pawn(start, end, game, "white");
+    let pawn = new Pawn(start, game, "white");
 
     // When
-    let valid = pawn.isValidMove();
+    let valid = pawn.isValidMove(end);
 
     // Then
     expect(valid).toBe(true);
@@ -33,10 +33,10 @@ test('pawn cannot move backward', () => {
     let start = {'x': 1, 'y': 5};
     let end = {'x': 1, 'y': 6};
     let game = new Game();
-    let pawn = new Pawn(start, end, game, "white");
+    let pawn = new Pawn(start, game, "white");
 
     // When
-    let valid = pawn.isValidMove()
+    let valid = pawn.isValidMove(end)
 
     // Then
     expect(valid).toBe(false);
@@ -48,10 +48,10 @@ test('sameFile() returns true when same file', () => {
     let start = {'x': 1, 'y': 5};
     let end = {'x': 1, 'y': 6};
     let game = new Game();
-    let pawn = new Pawn(start, end, game, "white");
+    let pawn = new Pawn(start, game, "white");
 
     // When
-    let sameFile = pawn.sameFile()
+    let sameFile = pawn.sameFile(end)
 
     // Then
     expect(sameFile).toBe(true);
@@ -63,26 +63,40 @@ test('sameFile() returns false when not same file', () => {
     let start = {'x': 1, 'y': 5};
     let end = {'x': 2, 'y': 6};
     let game = new Game();
-    let pawn = new Pawn(start, end, game, "white");
+    let pawn = new Pawn(start, game, "white");
 
     // When
-    let sameFile = pawn.sameFile()
+    let sameFile = pawn.sameFile(end)
 
     // Then
     expect(sameFile).toBe(false);
 })
 
-
-test('endIsOneSquareForward() returns true when one square forward', () => {
+test('isForward() returns true when end position is given number of ranks forward', () => {
     // Given
     let start = {'x': 1, 'y': 6};
-    let end = {'x': 1, 'y': 5};
+    let end = {'x': 1, 'y': 4};
     let game = new Game();
-    let pawn = new Pawn(start, end, game, "white");
+    let pawn = new Pawn(start, game, "white");
 
     // When
-    let endIsOneSquareForward = pawn.endIsOneSquareForward()
+    let isForward = pawn.isForward(end, 2);
 
     // Then
-    expect(endIsOneSquareForward).toBe(true);
+    expect(isForward).toBe(true);
+})
+
+
+test('isForward() returns true when end position is given number of ranks forward', () => {
+    // Given
+    let start = {'x': 1, 'y': 6};
+    let end = {'x': 1, 'y': 4};
+    let game = new Game();
+    let pawn = new Pawn(start, game, "black");
+
+    // When
+    let isForward = pawn.isForward(end, 2);
+
+    // Then
+    expect(isForward).toBe(false);
 })
