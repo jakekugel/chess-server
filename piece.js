@@ -5,6 +5,16 @@ class Piece {
         this.color = color;
     }
 
+    // Subclass should always provide an implementation of this method!
+    getCode() {
+        throw new Error('Subclass needs to implement getCode()');
+    }
+
+    // Subclass should always provide an implementation of this method!
+    isValidMove(end) {
+        throw new Error('Subclass needs to implement isValidMove()')
+    }
+
     // Subclass may override if needed, not required
     movePiece(end) {
         this.game.setPiece(end, this);
@@ -16,16 +26,6 @@ class Piece {
 
     // Subclass may override if needed, not required
     updateCastlingAvailability() {}
-
-    // Subclass should always implement
-    getCode() {
-        throw new Error('Subclass needs to implement getCode()');
-    }
-
-    // Subclass should always implement
-    isValidMove(end) {
-        throw new Error('Subclass needs to implement isValidMove()')
-    }
 }
 
 module.exports = Piece
