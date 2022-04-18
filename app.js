@@ -26,8 +26,6 @@ app.post('/moves', (req, res) => {
         res.status(400).json({message: 'The post body is empty.'});
     }
 
-    console.log(req.body);
-
     // Get start and end in x,y coordinates
     let start = game.algebraicToXY(req.body.start);
     let end = game.algebraicToXY(req.body.end);
