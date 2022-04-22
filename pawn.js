@@ -9,7 +9,7 @@ class Pawn extends Piece {
         }
 
         // Pawn is moving two spaces forward
-        if (this.sameFile(end) && this.isForward(end, 2) && ! this.game.isOccupied(end)) {
+        if (this.sameFile(end) && this.isForward(end, 2) && ! this.game.isObstacle(this.start, end)) {
             return true;
         }
 

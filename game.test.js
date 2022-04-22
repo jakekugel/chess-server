@@ -140,3 +140,83 @@ test('setPiece() can be used to remove a piece', () => {
     // Then
     expect(game.board[3][3]).toBe("");
 })
+
+test('isObstacle() returns false if nothing on same rank', () => {
+    // Given
+    let game = new Game();
+    let pos1 = {'x': 0, 'y': 3};
+    let pos2 = {'x': 7, 'y': 3};
+
+    // When
+    let obstacle = game.isObstacle(pos1, pos2);
+
+    // Then
+    expect(obstacle).toBe(false);
+});
+
+test('isObstacle() returns false if nothing on same file', () => {
+    // Given
+    let game = new Game();
+    let pos1 = {'x': 6, 'y': 1};
+    let pos2 = {'x': 6, 'y': 6};
+
+    // When
+    let obstacle = game.isObstacle(pos1, pos2);
+
+    // Then
+    expect(obstacle).toBe(false);
+});
+
+test('isObstacle() returns false if nothing on same diagonal', () => {
+    // Given
+    let game = new Game();
+    let pos1 = {'x': 6, 'y': 1};
+    let pos2 = {'x': 1, 'y': 6};
+
+    // When
+    let obstacle = game.isObstacle(pos1, pos2);
+
+    // Then
+    expect(obstacle).toBe(false);
+});
+
+test('isObstacle() returns true if something on same rank', () => {
+    // Given
+    let game = new Game();
+    game.setPieceCode({'x': 4, 'y':3}, 'p');
+    let pos1 = {'x': 0, 'y': 3};
+    let pos2 = {'x': 7, 'y': 3};
+
+    // When
+    let obstacle = game.isObstacle(pos1, pos2);
+
+    // Then
+    expect(obstacle).toBe(false);
+});
+
+test('isObstacle() returns true if something on same file', () => {
+    // Given
+    let game = new Game();
+    game.setPieceCode({'x': 6, 'y':4}, 'p');
+    let pos1 = {'x': 6, 'y': 1};
+    let pos2 = {'x': 6, 'y': 6};
+
+    // When
+    let obstacle = game.isObstacle(pos1, pos2);
+
+    // Then
+    expect(obstacle).toBe(false);
+});
+
+test('isObstacle() returns true if something on same diagonal', () => {
+    // Given
+    let game = new Game();
+    let pos1 = {'x': 7, 'y': 0};
+    let pos2 = {'x': 0, 'y': 7};
+
+    // When
+    let obstacle = game.isObstacle(pos1, pos2);
+
+    // Then
+    expect(obstacle).toBe(true);
+});
