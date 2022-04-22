@@ -2,7 +2,7 @@ const Pawn = require('./pawn')
 
 // A Chess game.
 class Game {
-    constructor() {
+    constructor(id, password) {
         this.board = [
             ["r", "n", "b", "q", "k", "b", "n", "r"],
             ["p", "p", "p", "p", "p", "p", "p", "p"],
@@ -14,6 +14,10 @@ class Game {
             ["R", "N", "B", "Q", "K", "B", "N", "R"],
         ];
 
+        this.messages = [];
+        this.id = id;
+        this.password = password;
+        
         this.activeColor = "w";
         this.castlingAvailability = "KQkq";
         this.enPassantTargetSquare = "-";
