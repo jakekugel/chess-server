@@ -72,7 +72,7 @@ class Game {
         let piece = this.getPiece(start, end);
 
         // Piece is null if nothing found in that position.
-        if (piece === null || ! piece.isValidMove()) {
+        if (piece === null || ! piece.isValidMove(end)) {
             return false;
         }
 
