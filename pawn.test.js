@@ -100,3 +100,57 @@ test('isForward() returns true when end position is given number of ranks forwar
     // Then
     expect(isForward).toBe(false);
 })
+
+test('Pawn can move two spaces forward', () => {
+    // Given
+    let start = {'x': 1, 'y': 6};
+    let end = {'x': 1, 'y': 4};
+    let game = new Game();
+    let pawn = new Pawn(start, game, "white");
+
+    // When
+    let valid = pawn.isValidMove(end);
+
+    // Then
+    expect(valid).toBe(true);
+})
+
+test('Pawn cannot move two spaces if piece 1 space away', () => {
+    // Given white pawn moving two squares
+    let start = {'x': 1, 'y': 6};
+    let end = {'x': 1, 'y': 4};
+
+    // Given a game board with black pawn blocking white pawn
+    let game = new Game();
+    game.setPieceCode({'x': 1, 'y': 5}, 'p')
+
+    // Given a pawn piece
+    let pawn = new Pawn(start, game, "white");
+
+    console.log('checking 1 piece away');
+
+    // When
+    let valid = pawn.isValidMove(end);
+
+    // Then
+    expect(valid).toBe(false);
+})
+
+test('Pawn cannot move two spaces if piece 2 spaces away', () => {
+    // Given white pawn moving two squares
+    let start = {'x': 1, 'y': 6};
+    let end = {'x': 1, 'y': 4};
+
+    // Given a game board with white king blocking white pawn
+    let game = new Game();
+    game.setPieceCode({'x': 1, 'y': 4}, 'K')
+
+    // Given a pawn piece
+    let pawn = new Pawn(start, game, "white");
+
+    // When
+    let valid = pawn.isValidMove(end);
+
+    // Then
+    expect(valid).toBe(false);
+})

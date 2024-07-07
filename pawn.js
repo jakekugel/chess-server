@@ -1,6 +1,8 @@
 const Piece = require('./piece')
 
 class Pawn extends Piece {
+
+    // Check if move is valid
     isValidMove(end) {
 
         // Simple case where pawn is moving one space forward
@@ -9,7 +11,7 @@ class Pawn extends Piece {
         }
 
         // Pawn is moving two spaces forward
-        if (this.sameFile(end) && this.isForward(end, 2) && ! this.game.isObstacle(this.start, end)) {
+        if (this.sameFile(end) && this.isForward(end, 2) && ! this.game.isObstacle(this.position, end) && ! this.game.isOccupied(end)) {
             return true;
         }
 

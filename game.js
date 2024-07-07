@@ -138,7 +138,7 @@ class Game {
         return true;
     }
 
-    // Given a position and a Piece object, sets the 
+    // Given a position and a Piece object, sets the
     setPiece(position, piece) {
         if (piece !== null) {
             this.board[position.y][position.x] = piece.getCode();
@@ -171,30 +171,40 @@ class Game {
     // Returns true if there is a piece BETWEEN two positions.  Does not check
     // the positions themselves.
     isObstacle(position1, position2) {
-        if (! this.isSameFile(position1, position2) 
+        console.log('Entering isObstacle. ' + JSON.stringify(position1) + JSON.stringify(position2));
+
+        if (! this.isSameFile(position1, position2)
          && ! this.isSameRank(position1, position2)
          && ! this.isSameDiagonal(position1, position2)) {
             throw 'Error: must be either same rank, same file, or same diagonal'
         };
 
-        // These will be either +1, 0, or -1
+        // Each of these will be either +1, 0, or -1
         let xStep = (position2.x === position1.x) ? 0 : (position2.x - position1.x) / Math.abs(position2.x - position1.x);
         let yStep = (position2.y === position1.y) ? 0 : (position2.y - position1.y) / Math.abs(position2.y - position1.y);
+
+        console.log('xStep ' + xStep);
+        console.log('yStep' + yStep);
 
         let x = position1.x + xStep;
         let y = position1.y + yStep;
 
         while ((x !== position2.x) && (y !== position2.y)) {
+            console.log('Checking: ' + JSON.stringify(x) + JSON.stringify(y));
             if (this.isOccupied({'x': x, 'y': y})) {
-                console.log('Position occupied')
+                console.log('Exiting: is obstacle.')
                 console.log({'x': x, 'y': y});
                 return true;
             }
 
             x += xStep;
             y += yStep;
+            console.log('stepped to: ');
+            console.log({'x': x, 'y': y});
+
         }
 
+        console.log('Exiting: no obstacle.')
         return false;
     }
 }
